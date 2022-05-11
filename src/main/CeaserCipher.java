@@ -1,15 +1,28 @@
 package main;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class CeaserCipher {
     public static String alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,”:-!? ";
 
-    //This method encrypts the .txt file converted into String;
-    public static String encrypt(String messagetoencrypt, int keytoencrypt) {
+     //This method converts txt. file into a String
+    public static String convert ( String link) throws IOException {
+       Path path = Path.of(link);
+        List<String> list = Files.readAllLines(path);
+        String messagetoencrypt = "";
+        for (String input : list) {
+            messagetoencrypt += input + "\n";
+        }
+        return messagetoencrypt;
+    }
+
+    //This method encrypts the String using Ceaser's cipher
+    public static String encrypt (String messagetoencrypt, int keytoencrypt) {
         String encryptedMessage = "";
         String messagetoencryptlowercase = messagetoencrypt.toLowerCase();
 
@@ -22,7 +35,7 @@ public class CeaserCipher {
         return encryptedMessage;
     }
 
-    //Method to decrypt the String taken from the .txt file
+    //Method to decrypt the String using Ceasers cipher
     public static String decrypt(String messagetodecrypt, int keytodecrypt) {
         String decryptedMessage = "";
         for (int i = 0; i < messagetodecrypt.length(); i++) {
@@ -36,13 +49,13 @@ public class CeaserCipher {
         }
         return decryptedMessage;
     }
-
-    public static String bruteforce(String messagegetobruteforce) {
+// This method decrypts String by using a bruteforce method
+    public static String bruteforce(String messagetobruteforce) {
         String bruteforcedMessage = "";
         int key = 0;
         while (key < 41) {
-            for (int i = 0; i < messagegetobruteforce.length(); i++) {
-                int positionOfChar = alphabet.indexOf(messagegetobruteforce.charAt(i));
+            for (int i = 0; i < messagetobruteforce.length(); i++) {
+                int positionOfChar = alphabet.indexOf(messagetobruteforce.charAt(i));
                 int bruteforcedIndexOfChar = (positionOfChar - key) % 41;
                 if (bruteforcedIndexOfChar < 0) {
                     bruteforcedIndexOfChar = alphabet.length() + bruteforcedIndexOfChar;
@@ -60,14 +73,16 @@ public class CeaserCipher {
         return bruteforcedMessage;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
         Scanner scan = new Scanner(System.in);
-        System.out.println("Введите строку для кодировки:");
+        System.out.println("Введите ссылку на файл, который хотите закодировать: ");
         String s = scan.nextLine();
+
         System.out.println("Введите ключ для кодировки");
         int k = scan.nextInt();
         System.out.println("Спасибо, ваша строка закодирована");
-        String d = encrypt(s, k);
+        String d = encrypt(convert(s), k);
         System.out.println(d);
     }
 }
