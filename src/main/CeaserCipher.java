@@ -1,5 +1,6 @@
 package main;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,7 +12,7 @@ public class CeaserCipher {
     public static String alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,”:-!? ";
 
      //This method converts txt. file into a String
-    public static String convert ( String link) throws IOException {
+    public static String convertIntoString ( String link) throws IOException {
        Path path = Path.of(link);
         List<String> list = Files.readAllLines(path);
         String messagetoencrypt = "";
@@ -19,6 +20,11 @@ public class CeaserCipher {
             messagetoencrypt += input + "\n";
         }
         return messagetoencrypt;
+    }
+    //This method creates txt file with encrypted text
+    public static Path createsEncryptedFile (String encryptedtext, String link ) throws IOException {
+        Path path = Path.of(link);
+        return Files.writeString(path, encryptedtext);
     }
 
     //This method encrypts the String using Ceaser's cipher
@@ -82,7 +88,9 @@ public class CeaserCipher {
         System.out.println("Введите ключ для кодировки");
         int k = scan.nextInt();
         System.out.println("Спасибо, ваша строка закодирована");
-        String d = encrypt(convert(s), k);
-        System.out.println(d);
+        String d = encrypt(convertIntoString(s), k);
+        System.out.println("Введите ссылку и имя файла, чтобы создать закодированный файл: ");
+        String c = scan.nextLine();
+        createsEncryptedFile(d, c);
     }
 }
