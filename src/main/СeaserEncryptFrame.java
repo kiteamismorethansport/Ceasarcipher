@@ -5,11 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+
 
 public class СeaserEncryptFrame extends JFrame {
         JButton b1;
@@ -27,8 +23,7 @@ public class СeaserEncryptFrame extends JFrame {
         JTextField t2;
         String link;
         int key;
-        String texttoEcnrypt;
-    СeaserEncryptFrame.eHandler handler = new СeaserEncryptFrame.eHandler();
+        СeaserEncryptFrame.eHandler handler = new СeaserEncryptFrame.eHandler();
 
         public СeaserEncryptFrame (String s) {
             super(s);
@@ -134,7 +129,7 @@ public class СeaserEncryptFrame extends JFrame {
         СeaserEncryptFrame app = new СeaserEncryptFrame("CeaserCipher");
         app.setVisible(true);
         app.setDefaultCloseOperation(3);
-        app.setSize(600, 300);
+        app.setSize(580, 300);
         app.setResizable(false);
         app.setLocationRelativeTo((Component)null);
     }
