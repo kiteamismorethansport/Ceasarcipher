@@ -35,17 +35,17 @@ public class CeaserCipher {
     }
     //This method creates encrypted txt file from the String
     public static void createsEncryptedFileFromString(String encryptedtext) throws IOException {
-        Path path = Path.of("C:\\Users\\фермер\\IdeaProjects\\Ceasarcipher\\src\\main\\textencodedfile\\encryptedfile.txt");
+        Path path = Path.of("C:\\Users\\фермер\\IdeaProjects\\Ceasarcipher\\src\\main\\textfiles\\encryptedfile.txt");
         Files.write(path, encryptedtext.getBytes(StandardCharsets.UTF_8));
     }
 
     public static void createsDecryptedFileFromString(String encryptedtext) throws IOException {
-        Path path = Path.of("C:\\Users\\фермер\\IdeaProjects\\Ceasarcipher\\src\\main\\textencodedfile\\decryptedfile.txt");
+        Path path = Path.of("C:\\Users\\фермер\\IdeaProjects\\Ceasarcipher\\src\\main\\textfiles\\decryptedfile.txt");
         Files.write(path, encryptedtext.getBytes(StandardCharsets.UTF_8));
     }
 
     public static void createsBruteforcedFileFromString(String encryptedtext) throws IOException {
-        Path path = Path.of("C:\\Users\\фермер\\IdeaProjects\\Ceasarcipher\\src\\main\\textencodedfile\\bruteforcedfile.txt");
+        Path path = Path.of("C:\\Users\\фермер\\IdeaProjects\\Ceasarcipher\\src\\main\\textfiles\\bruteforcedfile.txt");
         Files.write(path, encryptedtext.getBytes(StandardCharsets.UTF_8));
     }
 
@@ -106,17 +106,5 @@ public class CeaserCipher {
             key++;
         }
         return bruteforcedMessage;
-    }
-
-    public static void main(String[] args) throws IOException {
-
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Введите ссылку на файл, который хотите раскодировать: ");
-        String s = scan.nextLine();
-        System.out.println(bruteforce(convertIntoString(s)));
-
-
-
     }
 }
