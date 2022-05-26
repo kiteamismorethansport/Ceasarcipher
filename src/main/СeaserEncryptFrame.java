@@ -115,7 +115,7 @@ public class СeaserEncryptFrame extends JFrame {
             }
             if (e.getSource() == СeaserEncryptFrame.this.b5 && !СeaserEncryptFrame.this.link.isEmpty()){
                 try {
-                    CeaserCipher.createsBruteforcedFileFromString(CeaserCipher.bruteforce(CeaserCipher.convertIntoString(link)));
+                    CeaserCipher.createsBruteforcedFileFromString(CeaserCipher.bruteForce(CeaserCipher.convertIntoString(link)));
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

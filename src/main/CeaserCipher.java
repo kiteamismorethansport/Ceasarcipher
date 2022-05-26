@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class CeaserCipher {
     public static String alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,”:-!? ";
-    public static String [] listofwords =
+    public static String [] listOfWords =
             {"год", "человек", "время", "дело", "жизнь", "день", "рука", "раз", "работа", "слово",
             "место", "лицо", "друг", "глаз", "вопрос", "дом", "сторона", "мир", "случай", "ребенок",
             "сила", "конец", "вид", "система", "часть", "город", "отношение", "женщина", "деньги",
@@ -50,13 +50,13 @@ public class CeaserCipher {
     }
 
     //This method encrypts the String using Ceaser's cipher
-    public static String encrypt (String messagetoencrypt, int keytoencrypt) {
+    public static String encrypt (String messageToEncrypt, int keyToEncrypt) {
         String encryptedMessage = "";
-        String messagetoencryptlowercase = messagetoencrypt.toLowerCase();
+        String messageToEncryptLowerCase = messageToEncrypt.toLowerCase();
 
-        for (int i = 0; i < messagetoencryptlowercase.length(); i++) {
-            int positionOfChar = alphabet.indexOf(messagetoencryptlowercase.charAt(i));
-            int encryptedIndexofChar = (keytoencrypt + positionOfChar) % 41;
+        for (int i = 0; i < messageToEncryptLowerCase.length(); i++) {
+            int positionOfChar = alphabet.indexOf(messageToEncryptLowerCase.charAt(i));
+            int encryptedIndexofChar = (keyToEncrypt + positionOfChar) % 41;
             char encryptedChar = alphabet.charAt(encryptedIndexofChar);
             encryptedMessage += encryptedChar;
         }
@@ -64,11 +64,11 @@ public class CeaserCipher {
     }
 
     //Method to decrypt the String using Ceasers cipher
-    public static String decrypt(String messagetodecrypt, int keytodecrypt) {
+    public static String decrypt(String messageToDecrypt, int keyToDecrypt) {
         String decryptedMessage = "";
-        for (int i = 0; i < messagetodecrypt.length(); i++) {
-            int positionOfChar = alphabet.indexOf(messagetodecrypt.charAt(i));
-            int decryptedIndexofChar = (positionOfChar - keytodecrypt) % 41;
+        for (int i = 0; i < messageToDecrypt.length(); i++) {
+            int positionOfChar = alphabet.indexOf(messageToDecrypt.charAt(i));
+            int decryptedIndexofChar = (positionOfChar - keyToDecrypt) % 41;
             if (decryptedIndexofChar < 0) {
                 decryptedIndexofChar = alphabet.length() + decryptedIndexofChar;
             }
@@ -78,12 +78,12 @@ public class CeaserCipher {
         return decryptedMessage;
     }
 // This method decrypts String by using a bruteforce method
-    public static String bruteforce(String messagetobruteforce) {
+    public static String bruteForce(String messageToBruteforce) {
         String bruteforcedMessage = "";
         int key = 0;
         while (key < 41) {
-            for (int i = 0; i < messagetobruteforce.length(); i++) {
-                int positionOfChar = alphabet.indexOf(messagetobruteforce.charAt(i));
+            for (int i = 0; i < messageToBruteforce.length(); i++) {
+                int positionOfChar = alphabet.indexOf(messageToBruteforce.charAt(i));
                 int bruteforcedIndexOfChar = (positionOfChar - key) % 41;
                 if (bruteforcedIndexOfChar < 0) {
                     bruteforcedIndexOfChar = alphabet.length() + bruteforcedIndexOfChar;
@@ -91,8 +91,8 @@ public class CeaserCipher {
                 char bruteforcedChar = alphabet.charAt(bruteforcedIndexOfChar);
                 bruteforcedMessage += bruteforcedChar;
             }
-            for (int k = 0; k<listofwords.length; k++){
-                if (bruteforcedMessage.contains(listofwords[k])){
+            for (int k = 0; k<listOfWords.length; k++){
+                if (bruteforcedMessage.contains(listOfWords[k])){
                     break;
 
                 }
